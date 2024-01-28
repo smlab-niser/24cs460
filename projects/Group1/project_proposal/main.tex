@@ -1,0 +1,98 @@
+%Author: 
+\documentclass[10pt, xcolor=x11names,compress]{beamer}
+\usepackage{tabulary}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{mwe}% for example pictures
+\usepackage{siunitx}
+\usepackage{hyperref}
+
+\usetheme{CambridgeUS}
+\usecolortheme{beaver}
+\useoutertheme{infolines}
+\usefonttheme[onlymath]{serif}
+\setbeamertemplate{headline}[default]
+\setbeamertemplate{navigation symbols}{}
+\mode<beamer>{\setbeamertemplate{blocks}[rounded][shadow=true]}
+\setbeamercovered{transparent}
+\setbeamercolor{block body}{use=structure, fg=white, bg=black!20}
+\setbeamercolor{itemize item}{fg=black}
+\setbeamercolor{itemize subitem}{fg=gray} 
+\setbeamercolor{itemize subsubitem}{fg=black!20} 
+\makeatletter\setbeamertemplate{footline}
+{  
+\leavevmode%  
+\hbox{%  
+\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%    
+\usebeamerfont{author in head/foot}
+\insertshortauthor%~~\beamer@ifempty{\insertshortinstitute}{}
+\insertshortinstitute{Int. MSc. NISER}
+ \end{beamercolorbox}%  
+ \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{institute in head/foot}%    
+ \usebeamerfont{title in head/foot}\insertinstitute  
+ \end{beamercolorbox}%  
+ \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%    
+ \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}    
+ \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}   
+ \end{beamercolorbox}}%  
+ \vskip0pt%
+ }
+ \makeatother 
+ \useoutertheme[footline=empty, subsection=false]{miniframes}
+ \usepackage{multicol}  
+ 
+ \begin{document}
+
+\section{Slide 1}
+\begin{frame}[label=Background]{\centerline {Prediction of Quantum Dynamics using} \centerline{Experimental Measurements}}
+\begin{center}
+    \textbf{Abhishek Singh \& Pritipriya Dasbehera}
+\end{center}
+\begin{itemize}
+    \item \underline{\textbf{Idea:}} Predict the evolution of probability density function of a quantum systems from measurements of position.
+    \item \underline{\textbf{Dataset:}} We create our own data-set by simulating some theoretical systems like 1-D potential well etc.
+    \item \underline{\textbf{Relevant Papers:}}
+              \begin{enumerate}
+              \scriptsize
+                  \item \href{https://doi.org/10.1103/PRXQuantum.4.040337}{\textit{Learning to Predict Arbitrary Quantum Processes} (Dec. 2023)}\\Hsin-Yuan Huang, Sitan Chen, and John Preskill, PRX Quantum 4, 040337
+                  \item \href{https://doi.org/10.3389/fmats.2022.1060744}{\textit{Emulating quantum dynamics with neural networks via knowledge distillation} (Jan. 2023)}\\
+                  Yu Yao, Chao Cao, Stephan Haas, Mahak Agarwal, Marcin Abram, Front. Mater.,                  Sec. Computational Materials Science
+                  \item \href{https://arxiv.org/abs/1711.10566}{\textit{Physics Informed Deep Learning (Part II): Data-driven Discovery of Nonlinear Partial Differential Equations} (Nov. 2017)}\\
+                  Maziar Raissi, Paris Perdikaris, George Em Karniadakis, arXiv[cs.AI]
+              \end{enumerate}
+
+    
+\end{itemize} 
+\end{frame}
+
+\section{Slide 2}
+\begin{frame}{}
+\begin{itemize}
+    \item \underline{\textbf{Work Distribution:}}
+    \begin{itemize}
+        \item{Abhishek:} Literature review on Quantum dynamics, exploring possible representation(s).
+        \item{Pritipriya:} Literature review on viable ML algorithms, curating data-set.
+        \item{Both:} Slides, Reports, and Implementation of Algorithms.
+    \end{itemize}
+    \item \underline{\textbf{Algorithms to be implemented:}}
+    \begin{itemize}
+        \item Surface regression, Physics-Informed Neural Network (PINN). 
+    \end{itemize}
+    \item \underline{\textbf{Midway Targets:}}
+    \begin{itemize}
+        \item Curating data-set and organization
+        \item Research about possible representation(s).
+        \item Implementation, optimization and comparison of 2 or more of above-mentioned algorithms.
+    \end{itemize}
+        \item \underline{\textbf{Expected Results:}}
+    \begin{itemize}
+        \item Optimal prediction within the trained region from surface regression.
+        \item Optimal prediction outside the trained region from PINN.
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+\end{document}
