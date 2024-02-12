@@ -1,0 +1,103 @@
+%Author: 
+\documentclass[10pt, xcolor=x11names,compress]{beamer}
+\usepackage{tabulary}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{mwe}% for example pictures
+\usepackage{siunitx}
+\usepackage{hyperref}
+
+\usetheme{Luebeck}
+\usecolortheme{orchid}
+\useoutertheme{infolines}
+\usefonttheme[onlymath]{serif}
+\setbeamertemplate{headline}[default]
+\setbeamertemplate{itemize items}[square]
+\setbeamertemplate{itemize subitem}[triangle]
+\setbeamertemplate{navigation symbols}{}
+\mode<beamer>{\setbeamertemplate{blocks}[rounded][shadow=true]}
+\setbeamercovered{transparent}
+\setbeamercolor{block body}{use=structure, fg=white, bg=black!20}
+\setbeamercolor{itemize item}{fg=blue}
+\setbeamercolor{itemize subitem}{fg=gray} 
+\setbeamercolor{itemize subsubitem}{fg=black!20} 
+\makeatletter\setbeamertemplate{footline}
+{  
+\leavevmode%  
+\hbox{%  
+\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%    
+\usebeamerfont{author in head/foot}
+\insertshortauthor%~~\beamer@ifempty{\insertshortinstitute}{}
+\insertshortinstitute{Int. MSc. NISER}
+ \end{beamercolorbox}%  
+ \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{institute in head/foot}%    
+ \usebeamerfont{title in head/foot}\insertinstitute  
+ \end{beamercolorbox}%  
+ \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%    
+ \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}    
+ \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}   
+ \end{beamercolorbox}}%  
+ \vskip0pt%
+ }
+ \makeatother 
+ \useoutertheme[footline=empty, subsection=false]{miniframes}
+ \usepackage{multicol}  
+ 
+ \begin{document}
+
+\section{Slide 1}
+\begin{frame}[label=Background]{\centerline {Improving ELSA and adding a theoretical framework}}
+\begin{center}
+    \textbf{A Rameswar Patro \& Aaditya Vicram Saraf (group 11)}
+\end{center}
+\begin{itemize}
+    \item \underline{\textbf{Idea:}} Adding theoretical background to \href{https://openreview.net/forum?id=jFiFmHrIfD}{\textit{Efficient Latent Search Algorithm (ELSA)}} and making improvements to its search components.
+    \item \underline{\textbf{Datasets:}} \href{https://www.cs.toronto.edu/~kriz/cifar.html}{CIFAR}, \href{http://yann.lecun.com/exdb/mnist/}{MNIST} and \href{https://www.image-net.org/download.php}{ImageNet-1k}.    
+    \item \underline{\textbf{Relevant Papers:}}
+              \begin{enumerate}
+              \scriptsize
+                  \item \href{https://doi.org/10.48550/ARXIV.2105.04906}{\textit{Bardes, A., Ponce, J., \& LeCun, Y. (2021). VICReg: Variance-Invariance-Covariance Regularization for Self-Supervised Learning (Version 3). arXiv.}}
+                  \item \href{https://doi.org/10.48550/arXiv.2303.00633}{\textit{Shwartz-Ziv, R., Balestriero, R., Kawaguchi, K., Rudner, T. G. J., \& LeCun, Y. (2023). An Information-Theoretic Perspective on Variance-Invariance-Covariance Regularization (Version 2). arXiv.}}
+                  \item \href{https://doi.org/10.48550/arXiv.2208.08795}{\textit {Li, J., Zhou, J., Xiong, Y., Chen, X., \& Chakrabarti, C. (2022). An Adjustable Farthest Point Sampling Method for Approximately-sorted Point Cloud Data (Version 1). arXiv.}}
+              \end{enumerate}    
+\end{itemize} 
+\end{frame}
+
+\section{Slide 2}
+\begin{frame}{}
+\begin{itemize}
+    \item \underline{\textbf{Work Distribution:}}
+    \begin{itemize}
+        \item{Aaditya :} Understanding Self-Supervised Loss, specifically Contrastive Loss, building mathematical intuition behind the VICReg triplet loss, finding and verifying a theoretical error bound for the loss function, some implementations.
+        \item{Rameswar :} Understanding the techniques for Farthest Point Sampling in Graph Neural Networks, adapting Farthest Point Sampling for VICReg Space, some implementations, report. 
+    \end{itemize}
+    \item \underline{\textbf{Midway Targets:}}
+    \begin{itemize}
+        \item Complete the reading part of above mentioned topics.
+        \item Find some weak error bound for the loss function.
+    \end{itemize}
+        \item \underline{\textbf{Expected Results:}}
+    \begin{itemize}
+        \item Improve the working of ELSA by having a better RandS (increasing both the metrics defined in the paper).
+
+        \item Providing theoretical justifications to the working of the two components and finding a theoretical error bound to the said algorithm.
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+\end{document}
+
+
+
+% Understanding Self-Supervised Loss, specifically Contrastive Loss. 
+Building mathematical intuition behind the VICReg triplet loss. 
+
+Understanding the techniques for Farthest Point Sampling in Graph Neural Networks.
+Adapting Farthest Point Sampling for VICReg Space.
+
+Improving the working of RandS component of ELSA using a better sampling technique to make the two components Orthogonal. 
+
+Finding and verifying a theoretical error bound for the loss function. %
