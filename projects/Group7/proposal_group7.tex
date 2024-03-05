@@ -1,0 +1,94 @@
+%Author: 
+\documentclass[10pt, xcolor=x11names,compress]{beamer}
+\usepackage{tabulary}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{mwe}% for example pictures
+\usepackage{siunitx}
+\usepackage{hyperref}
+
+\usetheme{CambridgeUS}
+\usecolortheme{seahorse}
+\useoutertheme{infolines}
+\usefonttheme[onlymath]{serif}
+\setbeamertemplate{headline}[default]
+\setbeamertemplate{navigation symbols}{}
+\mode<beamer>{\setbeamertemplate{blocks}[rounded][shadow=true]}
+\setbeamercovered{transparent}
+\setbeamercolor{block body}{use=structure, fg=white, bg=black!20}
+\setbeamercolor{itemize item}{fg=black}
+\setbeamercolor{itemize subitem}{fg=gray} 
+\setbeamercolor{itemize subsubitem}{fg=black!20} 
+\makeatletter\setbeamertemplate{footline}
+{  
+\leavevmode%  
+\hbox{%  
+\begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%    
+\usebeamerfont{author in head/foot}
+\insertshortauthor%~~\beamer@ifempty{\insertshortinstitute}{}
+\insertshortinstitute{Int. MSc. NISER}
+ \end{beamercolorbox}%  
+ \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{institute in head/foot}%    
+ \usebeamerfont{title in head/foot}\insertinstitute  
+ \end{beamercolorbox}%  
+ \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%    
+ \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}    
+ \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}   
+ \end{beamercolorbox}}%  
+ \vskip0pt%
+ }
+ \makeatother 
+ \useoutertheme[footline=empty, subsection=false]{miniframes}
+ \usepackage{multicol}  
+ 
+ \begin{document}
+
+\section{Slide 1}
+\begin{frame}[label=Background]{\centerline {Analyzing Strategies for } \centerline{Voronoi Area Game}}
+\begin{center}
+    \textbf{Samir Dileep \& Sandipan Samanta}
+\end{center}
+\begin{itemize}
+    \item \underline{\textbf{Idea:}} Predict optimal moves for victory in the Voronoi diagram area game and analyse resulting patterns.
+    \item \underline{\textbf{Dataset:}} Self-made data-set by simulating in-house version of said game.
+    \item \underline{\textbf{Relevant Papers:}}
+              \begin{enumerate}
+              \scriptsize
+                  \item \href{https://doi.org/10.1007/978-3-642-31866-5_9}{\textit{MCTS Experiments on the Voronoi Game}}\\
+                  Bouzy, B., Métivier, M., Pellier, D. \\In: van den Herik, H.J., Plaat, A. (eds) Advances in Computer Games. ACG 2011. Lecture Notes in Computer Science, vol 7168. Springer, Berlin, Heidelberg.
+                  \item \href{https://doi.org/10.1016/j.comgeo.2017.02.003}{\textit{The Discrete Voronoi Game in ${\rm I\!R}^2$}}\\
+                  Aritra Banik, Bhaswar B. Bhattacharya, Sandip Das, Satyaki Mukherjee\\
+                  Computational Geometry, Volume 63, 2017, Pages 53-62, ISSN 0925-7721.
+
+              \end{enumerate}
+
+    
+\end{itemize} 
+\vspace{18pt}
+\end{frame}
+
+\section{Slide 2}
+\begin{frame}{}
+\begin{itemize}
+    \item \underline{\textbf{Work Distribution:}}
+    \begin{itemize}
+        \item{Samir:} Literature review on vaible ML algorithms, generating corresponding dataset.
+        \item{Sandipan:} Literature review on Computational Geometry and expected patterns in observations.
+        \item{Both:} Slides, Reports, and Implementation of Algorithms.
+    \end{itemize}
+    \item \underline{\textbf{Goals for Mid-term:}}
+    \begin{itemize}
+        \item Curating data-set and organisation.
+        \item Implementation, optimization and comparison of different ML algorithms on simulatory dataset.
+    \end{itemize}
+        \item \underline{\textbf{Expected Results:}}
+    \begin{itemize}
+        \item Optimal prediction with high win-rate against test data.
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+\end{document}
