@@ -1,0 +1,65 @@
+import numpy as np
+from keras.models import Sequential
+from keras.layers import LSTM, Dense
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.neighbors import KNeighborsRegressor
+
+
+data1 = np.genfromtxt('soil moisture data - Day 2.csv', delimiter=',', skip_header=1, usecols=(0,1,2,3,4))
+data2 = np.genfromtxt('soil moisture data - DAY1.csv', delimiter=',', skip_header=1, usecols=(0,1,2,3))
+data3 = np.genfromtxt('soil moisture data - Sheet5.csv', delimiter=',', skip_header=1, usecols=(0,1,2,3,4))
+data4 = np.genfromtxt('soil moisture data - Sheet4.csv', delimiter=',', skip_header=1, usecols=(0,1,2,3,4))
+
+
+try:
+    data5 = np.genfromtxt('soil moisture data - Day 3.csv', delimiter=',', skip_header=1, usecols=(0,1,2,3,4))
+    data = np.concatenate([data1, data2, data3, data4, data5], axis=0)
+except FileNotFoundError:
+    data = np.concatenate([data1, data2, data3, data4], axis=0)
+
+
+try:
+    data6 = np.genfromtxt('soil moisture data - Day 6.csv', delimiter=',', skip_header=1, usecols=(0,1,2,3,4))
+    data7 = np.genfromtxt('soil moisture data - Day 7.csv', delimiter=',', skip_header=1, usecols=(0,1,2,3,4))
+    data9 = np.genfromtxt('soil moisture data - Day 9.csv', delimiter=',', skip_header=1, usecols=(0,1,2,3,4))
+    data = np.concatenate([data, data6, data7, data9], axis=0)
+except FileNotFoundError as e:
+    print(f"One or more files not found: {e.filename}")
+
+# Split the data into features and target
+X = data[:, :-1]  # Time, Temperature, Precipitation, Humidity, Precipitation Chance
+y = data[:, -1]   # Soil Moisture
+
+
+scaler_X = MinMaxScaler()
+scaler_y = MinMaxScaler()
+X_scaled = scaler_X.fit_transform(X)
+y_scaled = scaler_y.fit_transform(y.reshape(-1, 1)).flatten()
+X_train_reshaped = np.reshape(X_scaled, (X_scaled.shape[0], 1, X_scaled.shape[1]))
+model = Sequential()
+model.add(LSTM(64, input_shape=(1, X_train_reshaped.shape[2])))
+model.add(Dense(1))
+model.compile(optimizer='adam', loss='mean_squared_error')
+model.fit(X_train_reshaped, y_scaled, epochs=50, batch_size=32, verbose=1)
+
+# Train the KNN model for accuracy
+knn = KNeighborsRegressor(n_neighbors=5)
+knn.fit(X_scaled, y_scaled)
+# Function to predict soil moisture using LSTM and KNN
+def predict_soil_moisture_lstm_knn(time, temperature, humidity, precipitation_chance):
+    input_data = np.array([time, temperature, humidity, precipitation_chance])
+    input_data_scaled = scaler_X.transform([input_data])
+
+    lstm_prediction = scaler_y.inverse_transform(model.predict(np.reshape(input_data_scaled, (1, 1, input_data_scaled.shape[1]))))[0][0]
+    knn_prediction = scaler_y.inverse_transform(knn.predict([input_data_scaled]))[0]
+
+    return (lstm_prediction + knn_prediction) / 2
+
+# Predict future soil moisture
+user_time = float(input("Enter the time (0-23): "))
+user_temperature = float(input("Enter the temperature: "))
+user_humidity = float(input("Enter the humidity: "))
+user_precipitation_chance = float(input("Enter the precipitation chance (0-100): "))
+
+predicted_soil_moisture = predict_soil_moisture_lstm_knn(user_time, user_temperature, user_humidity, user_precipitation_chance)
+print(f"Predicted soil moisture at {user_time:02.0f}:00: {predicted_soil_moisture:.2f}")
